@@ -1,0 +1,75 @@
+{
+  "info": {
+    "name": "City Game API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cities",
+      "item": [
+        {
+          "name": "Create City",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cities",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Get All Cities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cities",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Upgrade Building",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"building\": \"castle\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/cities/{{city_id}}/buildings/castle/upgrade",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cities", "{{city_id}}", "buildings", "castle", "upgrade"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Buildings",
+      "item": [
+        {
+          "name": "Get Available Buildings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/buildings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "buildings"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 

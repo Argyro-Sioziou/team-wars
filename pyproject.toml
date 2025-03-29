@@ -1,0 +1,10 @@
+[project]
+name = "teamfights"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[tool.pylint.messages_control]
+disable = ["C0111"]  # missing-docstring
+
+[tool.mypy]
+python_version = "3.10" 
