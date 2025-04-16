@@ -11,7 +11,16 @@
           "name": "Create City",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"City 1\", \"icon\": \"icon\"}"
+            },
             "url": {
               "raw": "{{base_url}}/api/cities",
               "host": ["{{base_url}}"],
@@ -28,6 +37,18 @@
               "raw": "{{base_url}}/api/cities",
               "host": ["{{base_url}}"],
               "path": ["api", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Get City by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cities/{{city_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cities", "{{city_id}}"]
             }
           }
         },

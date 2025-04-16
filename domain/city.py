@@ -38,7 +38,7 @@ import uuid
 BuildingType: TypeAlias = Union[Castle, CityWalls, Barracks, Blacksmith, Workshop, Warehouse]
 
 class City:
-    def __init__(self, gold: int = 10000) -> None:
+    def __init__(self, name: str, icon: str, gold: int = 100000) -> None:
         """Initialize a new city with buildings and starting gold.
 
         Args:
@@ -52,6 +52,9 @@ class City:
             
         self.id = str(uuid.uuid4())
         self.gold = gold
+
+        self.name = name
+        self.icon = icon
         
         # Initialize buildings
         self.castle = Castle()  # Starts unlocked by default
@@ -181,7 +184,9 @@ class City:
             "buildings": [
                 self.building_to_dict(name, building)
                 for name, building in self.all_buildings.items()
-            ]
+            ],
+            "name": self.name,
+            "icon": self.icon
         }
 
     def add_gold(self, amount: int) -> None:

@@ -38,7 +38,7 @@ class Building:
     DEFAULT_GROWTH_FACTOR = 1.8
     MAX_LEVEL = 10
 
-    def __init__(self, base_cost=DEFAULT_BASE_COST, growth_factor=DEFAULT_GROWTH_FACTOR, level=1, locked=True, max_level=MAX_LEVEL):
+    def __init__(self, base_cost=DEFAULT_BASE_COST, growth_factor=DEFAULT_GROWTH_FACTOR, level=1, locked=False, max_level=MAX_LEVEL):
         self.level = level
         self.base_cost = base_cost  # Base cost for the first upgrade
         self.growth_factor = growth_factor

@@ -17,7 +17,7 @@ class Barracks(Building):
     """
 
     def __init__(self, level=1):
-        super().__init__(self.BASE_COST, self.GROWTH_FACTOR, level)
+        super().__init__(self.BASE_COST, self.GROWTH_FACTOR, level, True)
         self.speed_bonus = self.calculate_speed_bonus()
         self.unlock_units = self.find_unlocked_units()
 

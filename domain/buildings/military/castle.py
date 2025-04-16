@@ -20,5 +20,5 @@ class Castle(Building):
     """
 
     def __init__(self, level=1):
-        super().__init__(Castle.BASE_COST, Castle.GROWTH_FACTOR, level, False)
+        super().__init__(Castle.BASE_COST, Castle.GROWTH_FACTOR, level)
         self.build(12)
