@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from domain.units import Infantry, Militia, Archer
+from domain.units import Infantry, Militia, Archer, HeavyInfantry
 
 bp = Blueprint('units', __name__, url_prefix='/api/units')
 
@@ -9,10 +9,12 @@ def get_available_units():
     infantry = Infantry()
     militia = Militia()
     archer = Archer()
+    heavy_infantry = HeavyInfantry()
     available_units = {
         'infantry': infantry.to_dict(),
         'militia': militia.to_dict(),
-        'archer': archer.to_dict()
+        'archer': archer.to_dict(),
+        'heavy_infantry': heavy_infantry.to_dict()
     }
     return jsonify(available_units)
 
@@ -32,4 +34,10 @@ def get_militia_details():
 def get_archer_details():
     """Get detailed information about archer units"""
     archer = Archer()
-    return jsonify(archer.to_dict()) 
+    return jsonify(archer.to_dict())
+
+@bp.route('/heavy-infantry', methods=['GET'])
+def get_heavy_infantry_details():
+    """Get detailed information about heavy infantry units"""
+    heavy_infantry = HeavyInfantry()
+    return jsonify(heavy_infantry.to_dict()) 
