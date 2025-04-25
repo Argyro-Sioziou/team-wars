@@ -30,3 +30,10 @@ Follow these steps to get the project up and running on your local machine.
    ```
    python run.py
    ```
+
+5. Alternatively, run with Docker Compose:
+   ```bash
+   docker-compose up --build
+   ```
+   This will build and start the containerized application on port 5000.
+
