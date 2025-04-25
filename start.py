@@ -9,6 +9,7 @@ from domain.buildings.exceptions import (
     BuildingLevelError,
     InvalidBuildingError
 )
+from domain.units import Infantry
 
 def test_city_operations():
     print("Starting city operations test...")
@@ -75,6 +76,12 @@ def test_city_operations():
         print(f"- {building['name']} (Level {building['level']}, {'Unlocked' if not building['locked'] else 'Locked'})")
 
 test_city_operations()
+
+infantry = Infantry()
+
+infantry.training_cost  # 100
+infantry.stats.attack_power  # 15
+infantry.current_health  # 60 (full health)
 
 jira = Jira(
     url='https://teamfights.atlassian.net/',
