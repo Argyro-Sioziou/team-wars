@@ -5,31 +5,27 @@ class Cavalry(Unit):
     Cavalry Unit - Fast offensive unit available from Barracks level 5
     
     A powerful mounted unit specializing in swift attacks and mobility.
-    Features enhanced attack power through flanking maneuvers.
+    Requires both weapons from the Blacksmith and horses from the Stable.
+    Features enhanced mobility for faster city attacks.
     """
-    
-    FLANKING_BONUS = 0.25  # 25% attack bonus from flanking
     
     def __init__(self):
         stats = UnitStats(
-            attack_power=30,
-            defense_power=20,
+            attack_power=25,  # Strong attack power
+            defense_power=12,  # Moderate defense
             health_points=80,
-            speed=8  # Fast speed value
+            speed=8  # Fast speed value for high mobility
         )
         
         super().__init__(
-            training_cost=300,  # 300 Gold per unit
-            training_time=300,  # 5 minutes = 300 seconds
-            food_requirement=4,  # 4 Food per unit
+            training_cost=100,  # 100 Gold per unit
+            training_time=900,  # 15 minutes = 900 seconds
+            food_requirement=2,  # 2 Food per unit
             stats=stats,
-            barracks_level_required=5
+            barracks_level_required=5,
+            weapon_requirements=["Sword", "Horse"],  # Required equipment from Blacksmith and Stable
+            facility_requirements=["Blacksmith", "Stable"]  # Required buildings
         )
-    
-    def calculate_attack_damage(self) -> float:
-        """Calculate attack damage including flanking bonus"""
-        base_damage = self.stats.attack_power
-        return base_damage * (1 + self.FLANKING_BONUS)
     
     @property
     def unit_type(self) -> str:
@@ -37,14 +33,14 @@ class Cavalry(Unit):
     
     @property
     def description(self) -> str:
-        return "Fast-moving mounted unit specializing in swift and powerful attacks."
+        return "Fast-moving mounted unit with superior mobility and strong offensive capabilities. Requires swords from Blacksmith and horses from Stable."
     
     @property
     def special_abilities(self) -> list[dict]:
         return [
             {
-                "name": "Flanking Maneuver",
-                "description": f"Increases attack effectiveness by {self.FLANKING_BONUS * 100}% when attacking"
+                "name": "High Mobility",
+                "description": "Superior speed allows for reduced travel time when attacking enemy cities"
             }
         ]
     
@@ -55,6 +51,6 @@ class Cavalry(Unit):
             "unit_type": self.unit_type,
             "description": self.description,
             "special_abilities": self.special_abilities,
-            "flanking_bonus": self.FLANKING_BONUS,
-            "effective_attack": self.calculate_attack_damage()
+            "weapon_requirements": self.weapon_requirements,
+            "facility_requirements": self.facility_requirements
         } 
