@@ -1,13 +1,13 @@
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
-import { DefaultCatchBoundary } from "./components/DefaultCatchBoundary";
-import { NotFound } from "./components/NotFound";
+import { GlobalError } from "./components/global-error";
+import { NotFound } from "./components/not-found";
 
 export function createRouter() {
   const router = createTanStackRouter({
     routeTree,
     defaultPreload: "intent",
-    defaultErrorComponent: DefaultCatchBoundary,
+    defaultErrorComponent: GlobalError,
     defaultNotFoundComponent: () => <NotFound />,
     scrollRestoration: true,
   });

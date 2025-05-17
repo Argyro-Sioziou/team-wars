@@ -11,13 +11,27 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as BarracksImport } from './routes/barracks'
 import { Route as IndexImport } from './routes/index'
+import { Route as CitiesIdImport } from './routes/cities.$id'
 
 // Create/Update Routes
+
+const BarracksRoute = BarracksImport.update({
+  id: '/barracks',
+  path: '/barracks',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CitiesIdRoute = CitiesIdImport.update({
+  id: '/cities/$id',
+  path: '/cities/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +46,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/barracks': {
+      id: '/barracks'
+      path: '/barracks'
+      fullPath: '/barracks'
+      preLoaderRoute: typeof BarracksImport
+      parentRoute: typeof rootRoute
+    }
+    '/cities/$id': {
+      id: '/cities/$id'
+      path: '/cities/$id'
+      fullPath: '/cities/$id'
+      preLoaderRoute: typeof CitiesIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/barracks': typeof BarracksRoute
+  '/cities/$id': typeof CitiesIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/barracks': typeof BarracksRoute
+  '/cities/$id': typeof CitiesIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/barracks': typeof BarracksRoute
+  '/cities/$id': typeof CitiesIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/barracks' | '/cities/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/barracks' | '/cities/$id'
+  id: '__root__' | '/' | '/barracks' | '/cities/$id'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BarracksRoute: typeof BarracksRoute
+  CitiesIdRoute: typeof CitiesIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BarracksRoute: BarracksRoute,
+  CitiesIdRoute: CitiesIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +115,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/barracks",
+        "/cities/$id"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/barracks": {
+      "filePath": "barracks.tsx"
+    },
+    "/cities/$id": {
+      "filePath": "cities.$id.tsx"
     }
   }
 }

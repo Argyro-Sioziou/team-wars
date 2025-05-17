@@ -1,14 +1,17 @@
 import {
-  HeadContent,
   Outlet,
   Scripts,
+  HeadContent,
   createRootRoute,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import * as React from "react";
-import { DefaultCatchBoundary } from "@/components/DefaultCatchBoundary";
-import { NotFound } from "@/components/NotFound";
+import { GlobalError } from "@/components/global-error";
+import { NotFound } from "@/components/not-found";
 import appCss from "@/styles/app.css?url";
+import { Toaster } from "@/components/ui/sonner";
+import { Navbar } from "@/components/navbar";
+import { MedievalLayout } from "@/components/map";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -26,7 +29,7 @@ export const Route = createRootRoute({
   errorComponent: (props) => {
     return (
       <RootDocument>
-        <DefaultCatchBoundary {...props} />
+        <GlobalError {...props} />
       </RootDocument>
     );
   },
@@ -37,7 +40,9 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <MedievalLayout>
+        <Outlet />
+      </MedievalLayout>
     </RootDocument>
   );
 }
@@ -49,7 +54,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <Navbar />
         {children}
+        <Toaster />
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
