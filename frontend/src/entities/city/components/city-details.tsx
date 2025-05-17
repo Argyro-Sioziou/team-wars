@@ -9,6 +9,7 @@ export const CityDetails: React.FC<{ city: City | null }> = ({ city }) => {
 
   useEffect(() => {
     if (error) {
+      console.error(error);
       toast.error(error.message);
     }
   }, [error]);
@@ -26,7 +27,7 @@ export const CityDetails: React.FC<{ city: City | null }> = ({ city }) => {
           return (
             <Button
               key={building.name}
-              disabled={building.locked || error?.code === "INSUFFICIENT_GOLD"}
+              disabled={building.locked}
               variant={building.locked ? "secondary" : "outline"}
               className={`h-auto p-4 flex flex-col items-center justify-center gap-2 ${
                 building.locked && "bg-muted/50 opacity-70 cursor-not-allowed"

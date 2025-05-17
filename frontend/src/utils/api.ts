@@ -6,7 +6,7 @@ import type { Response as RedaxiosResponse } from "redaxios";
 
 export interface ApiError {
   message: string;
-  code: string;
+  error: string; // ? perhaps we should call this "code" instead of "error"? it's related to BE response
 }
 
 // Backend API response structure
